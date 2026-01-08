@@ -1,0 +1,82 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3y137wijellt"]
+
+[ext_resource type="Script" uid="uid://bfw58r01ocdmi" path="res://addons/safeload/SafeLoadConfigCreator.gd" id="1_oh3wd"]
+
+[node name="safeload_config_creator" type="Control" node_paths=PackedStringArray("classes_hidden_by_search_label", "allowed_classes_grid", "disallowed_classes_grid", "class_search_bar", "clear_search_button", "save_config_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oh3wd")
+classes_hidden_by_search_label = NodePath("scroll/options/classes_hidden_by_search")
+allowed_classes_grid = NodePath("scroll/options/classes_vbox/allowed_classes_scroll/allowed_classes_grid")
+disallowed_classes_grid = NodePath("scroll/options/classes_vbox/disallowed_classes_scroll/disallowed_classes_grid")
+class_search_bar = NodePath("scroll/options/class_search/class_search_bar")
+clear_search_button = NodePath("scroll/options/class_search/clear_search")
+save_config_button = NodePath("scroll/options/save_config")
+
+[node name="scroll" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="options" type="VBoxContainer" parent="scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="class_search" type="HBoxContainer" parent="scroll/options"]
+layout_mode = 2
+
+[node name="class_search_bar" type="LineEdit" parent="scroll/options/class_search"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Class search bar"
+
+[node name="clear_search" type="Button" parent="scroll/options/class_search"]
+layout_mode = 2
+text = "Clear search"
+
+[node name="classes_hidden_by_search" type="Label" parent="scroll/options"]
+visible = false
+layout_mode = 2
+text = "Some classes are hidden by your search"
+
+[node name="classes_vbox" type="VBoxContainer" parent="scroll/options"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="allowed_label" type="Label" parent="scroll/options/classes_vbox"]
+layout_mode = 2
+text = "Allowed Classes"
+
+[node name="allowed_classes_scroll" type="ScrollContainer" parent="scroll/options/classes_vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="allowed_classes_grid" type="GridContainer" parent="scroll/options/classes_vbox/allowed_classes_scroll"]
+layout_mode = 2
+
+[node name="disallowed_label" type="Label" parent="scroll/options/classes_vbox"]
+layout_mode = 2
+text = "Disallowed classes"
+
+[node name="disallowed_classes_scroll" type="ScrollContainer" parent="scroll/options/classes_vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="disallowed_classes_grid" type="GridContainer" parent="scroll/options/classes_vbox/disallowed_classes_scroll"]
+layout_mode = 2
+
+[node name="save_config" type="Button" parent="scroll/options"]
+layout_mode = 2
+text = "Save config"

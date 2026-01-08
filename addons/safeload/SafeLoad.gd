@@ -1,23 +1,30 @@
 @abstract
 extends Object
 class_name SafeLoad
+## Abstract class containing static function to safely load scripts and resources.
 
+## A list of all the files inside "res://" when SafeLoad is first used.
 static var valid_files: PackedStringArray = get_valid_files("res://")
 
+## A list of all the classes obtained with ClassDB.get_class_list() and ProjectSettings.get_global_class_list()
+## when Safeload is first used.
 static var valid_classes: PackedStringArray = get_valid_classes()
 
+## A blacklist for valid classes. These classes should never be allowed.
 const default_forbidden_classes: PackedStringArray = [
 	"GDScript"
 ]
 
+## Used by static var valid_classes to get the valid classes.
 static func get_valid_classes() -> PackedStringArray:
 	var classes: PackedStringArray = ClassDB.get_class_list()
-	for forbidden_class in default_forbidden_classes:
-		classes.erase(forbidden_class)
 	for custom_class in ProjectSettings.get_global_class_list():
 		classes.append(custom_class["class"])
+	for forbidden_class in default_forbidden_classes:
+		classes.erase(forbidden_class)
 	return classes
 
+## Used by static var valid_files to get the valid files.
 static func get_valid_files(dir: String) -> PackedStringArray:
 	var new_valid_files: PackedStringArray = []
 	var files: PackedStringArray = DirAccess.get_files_at(dir)
@@ -154,6 +161,7 @@ static func is_file_safe(path: String, config: SafeLoadConfig = null) -> bool:
 	push_error("SafeLoad does not accept files with extension: ", extension)
 	return false
 
+## Used to load safely a resource.
 static func safe_load(path: String, config: SafeLoadConfig = null) -> Resource:
 	if is_file_safe(path, config):
 		return load(path)

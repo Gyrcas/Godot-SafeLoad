@@ -1,6 +1,7 @@
 @tool
 extends Control
 class_name SafeLoadConfigCreator
+## Scene script of the SafeLoadConfig creator.
 
 @export var classes_hidden_by_search_label: Label = null
 

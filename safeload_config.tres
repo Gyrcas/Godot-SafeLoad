@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SafeLoadConfig" load_steps=2 format=3 uid="uid://cflu4dt1x0wll"]
+
+[ext_resource type="Script" uid="uid://dmq2ulunt1qff" path="res://addons/safeload/SafeLoadConfig.gd" id="1_mhg2n"]
+
+[resource]
+script = ExtResource("1_mhg2n")
+metadata/_custom_type_script = "uid://dmq2ulunt1qff"
